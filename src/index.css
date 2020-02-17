@@ -41,6 +41,10 @@ ul {
   background: rgba(112, 255, 196, 0.384);
 }
 
+.square.hasValue:hover {
+  background: rgba(255, 112, 112, 0.384);
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
