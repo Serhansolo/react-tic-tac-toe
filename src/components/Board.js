@@ -60,7 +60,7 @@ export class Board extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={`${!this.gameHasWinner() ? 'playing' : ''}`}>
         <div className="status">{this.renderPlayerStatus()}</div>
         <div className="board-row">
           {this.renderSquare(0)}

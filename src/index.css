@@ -37,11 +37,21 @@ ul {
 .square:focus {
   outline: none;
 }
-.square:hover {
+
+.square.hasX {
+  background: hsl(219, 64%, 66%);
+  color: rgb(176, 195, 230);
+}
+.square.hasO {
+  background: hsl(318, 64%, 66%);
+  color: rgb(230, 176, 214);
+}
+
+.playing .square:hover {
   background: rgba(112, 255, 196, 0.384);
 }
 
-.square.hasValue:hover {
+.playing .square.hasValue:hover {
   background: rgba(255, 112, 112, 0.384);
 }
 
