@@ -37,6 +37,9 @@ ul {
 .square:focus {
   outline: none;
 }
+.square:hover {
+  background: rgba(112, 255, 196, 0.384);
+}
 
 .kbd-navigation .square:focus {
   background: #ddd;
