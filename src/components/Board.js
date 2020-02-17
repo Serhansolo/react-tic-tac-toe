@@ -2,6 +2,7 @@ import React from 'react';
 
 // import Components
 import { Square } from './Square';
+import calculateWinner from '../helpers/calculateWinner';
 
 export class Board extends React.Component {
   constructor(props) {
@@ -13,12 +14,24 @@ export class Board extends React.Component {
   }
 
   handleClick(i) {
-    const squares = this.state.squares;
+    // Make the squares state immutable
+    const squares = this.state.squares.slice();
+
+    // Check if there is a winner OR if the clicked square is already occupied.
+    if (this.gameHasWinner() || squares[i]) {
+      return;
+    }
+
+    // if not then add current players signature.
     squares[i] = this.state.xIsNext ? 'X' : "O";
+
+    // create new state object from changed data.
     const state = {
       squares: squares,
       xIsNext: !this.state.xIsNext
     }
+
+    // update the state.
     this.setState(state);
   }
 
@@ -30,7 +43,19 @@ export class Board extends React.Component {
   }
 
   renderPlayerStatus() {
-    return `Next Player: ${this.state.xIsNext ? 'X' : 'O'}`;
+    // initial game status based on next player status.
+    let status = `Next Player: ${this.state.xIsNext ? 'X' : 'O'}`;;
+
+    // if game has a winner then change status accordingly.
+    if (this.gameHasWinner()) {
+      status = `Winner is: ${this.gameHasWinner()}!`;
+    }
+
+    return status;
+  }
+
+  gameHasWinner() {
+    return calculateWinner(this.state.squares);
   }
 
   render() {
